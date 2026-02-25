@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orçamentos Express — O teu perfil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #940580;
+      --primary-dark: #6d0460;
+      --primary-light: #bf07a6;
+      --primary-glow: rgba(148, 5, 128, 0.15);
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface2: #1e1e1e;
+      --border: rgba(148, 5, 128, 0.2);
+      --text: #f0f0f0;
+      --text-muted: #888;
+      --success: #00c48c;
+      --error: #ff4d6d;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background decorativo */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(148,5,128,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(148,5,128,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .logo-area {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 0 24px rgba(148,5,128,0.4);
+    }
+
+    .logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text span {
+      color: var(--primary-light);
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(26px, 5vw, 36px);
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    /* Progresso */
+    .progress-bar {
+      height: 3px;
+      background: var(--surface2);
+      border-radius: 99px;
+      margin-bottom: 40px;
+      overflow: hidden;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      border-radius: 99px;
+      transition: width 0.5s ease;
+      box-shadow: 0 0 12px rgba(148,5,128,0.5);
+    }
+
+    /* Secções */
+    .section {
+      margin-bottom: 32px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .section:nth-child(1) { animation-delay: 0.1s; }
+    .section:nth-child(2) { animation-delay: 0.2s; }
+    .section:nth-child(3) { animation-delay: 0.3s; }
+    .section:nth-child(4) { animation-delay: 0.4s; }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary-light);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Campos */
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .required-badge {
+      font-size: 10px;
+      background: rgba(148,5,128,0.2);
+      color: var(--primary-light);
+      padding: 2px 7px;
+      border-radius: 99px;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    .optional-badge {
+      font-size: 10px;
+      background: rgba(255,255,255,0.05);
+      color: var(--text-muted);
+      padding: 2px 7px;
+      border-radius: 99px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+      background: var(--surface2);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(255,255,255,0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+      line-height: 1.5;
+    }
+
+    /* IVA botões */
+    .iva-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .iva-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 8px;
+      color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .iva-btn:hover {
+      border-color: var(--primary);
+      color: var(--text);
+    }
+
+    .iva-btn.active {
+      background: rgba(148,5,128,0.15);
+      border-color: var(--primary);
+      color: var(--primary-light);
+      font-weight: 600;
+      box-shadow: 0 0 12px var(--primary-glow);
+    }
+
+    /* Upload logo */
+    .logo-upload {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-upload:hover {
+      border-color: var(--primary);
+      background: var(--primary-glow);
+    }
+
+    .logo-upload input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
+    .logo-upload-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .logo-upload p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .logo-upload small {
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+    }
+
+    .logo-preview {
+      display: none;
+      max-height: 80px;
+      max-width: 200px;
+      object-fit: contain;
+      margin: 0 auto;
+      border-radius: 8px;
+    }
+
+    /* Botão submit */
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border: none;
+      border-radius: 14px;
+      padding: 18px 24px;
+      color: white;
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 24px rgba(148,5,128,0.3);
+      margin-top: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .btn-submit:hover::before { opacity: 1; }
+    .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(148,5,128,0.4); }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .btn-submit .spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto;
+    }
+
+    /* Mensagens de estado */
+    .msg {
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      display: none;
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+
+    .msg.success {
+      background: rgba(0,196,140,0.1);
+      border: 1px solid rgba(0,196,140,0.3);
+      color: var(--success);
+    }
+
+    .msg.error {
+      background: rgba(255,77,109,0.1);
+      border: 1px solid rgba(255,77,109,0.3);
+      color: var(--error);
+    }
+
+    /* Loading state */
+    .loading-screen {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      gap: 16px;
+    }
+
+    .loading-screen .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .loading-screen p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Success screen */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(0,196,140,0.1);
+      border: 2px solid rgba(0,196,140,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 24px;
+    }
+
+    .success-screen h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .success-screen p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Token inválido */
+    .error-screen {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .error-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .error-screen h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .error-screen p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Animações */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .container { padding: 28px 16px 60px; }
+      .iva-options { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="spinner"></div>
+    <p>A carregar o teu perfil...</p>
+  </div>
+
+  <!-- Token inválido -->
+  <div class="container">
+    <div class="error-screen" id="errorScreen">
+      <div class="error-icon">⏰</div>
+      <h2>Link expirado</h2>
+      <p>Este link já não é válido.<br>Envia <strong>/perfil</strong> no Telegram para obteres um novo link.</p>
+    </div>
+
+    <!-- Sucesso -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">✓</div>
+      <h2>Perfil guardado!</h2>
+      <p>Os teus dados foram atualizados com sucesso.<br>Já podes voltar ao Telegram e gerar orçamentos.</p>
+    </div>
+
+    <!-- Formulário -->
+    <div id="formWrapper">
+      <div class="header">
+        <div class="logo-area">
+          <div class="logo-icon">⚡</div>
+          <div class="logo-text">Orçamentos<span>Express</span></div>
+        </div>
+        <h1>O teu perfil</h1>
+        <p class="subtitle">Preenche os teus dados para personalizar os orçamentos que envias aos clientes.</p>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+      </div>
+
+      <form id="perfilForm">
+
+        <!-- Obrigatórios -->
+        <div class="section">
+          <div class="section-title">Informação obrigatória</div>
+
+          <div class="field">
+            <label>Nome / Empresa <span class="required-badge">obrigatório</span></label>
+            <input type="text" name="nome" placeholder="ex: Manuel Costa Canalizações" required>
+          </div>
+
+          <div class="field">
+            <label>Taxa de IVA <span class="required-badge">obrigatório</span></label>
+            <div class="iva-options">
+              <button type="button" class="iva-btn" data-value="23">23%</button>
+              <button type="button" class="iva-btn" data-value="6">6%</button>
+              <button type="button" class="iva-btn" data-value="13">13%</button>
+              <button type="button" class="iva-btn" data-value="0">Isento</button>
+            </div>
+            <input type="hidden" name="taxa_iva" id="taxaIvaInput">
+          </div>
+        </div>
+
+        <!-- Identificação fiscal -->
+        <div class="section">
+          <div class="section-title">Identificação</div>
+
+          <div class="field">
+            <label>NIF <span class="optional-badge">opcional</span></label>
+            <input type="text" name="nif" placeholder="ex: 123456789" maxlength="9">
+          </div>
+
+          <div class="field">
+            <label>IBAN <span class="optional-badge">opcional</span></label>
+            <input type="text" name="iban" placeholder="ex: PT50 0000 0000 0000 0000 0000 0">
+          </div>
+        </div>
+
+        <!-- Contactos -->
+        <div class="section">
+          <div class="section-title">Contactos e localização</div>
+
+          <div class="field">
+            <label>Morada <span class="optional-badge">opcional</span></label>
+            <input type="text" name="morada" placeholder="ex: Rua do Comércio, 5">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="field">
+              <label>Código Postal <span class="optional-badge">opcional</span></label>
+              <input type="text" name="cp" placeholder="ex: 4000-123" maxlength="8">
+            </div>
+            <div class="field">
+              <label>Localidade <span class="optional-badge">opcional</span></label>
+              <input type="text" name="localidade" placeholder="ex: Porto">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Telefone <span class="optional-badge">opcional</span></label>
+            <input type="tel" name="telefone" placeholder="ex: 912 345 678">
+          </div>
+
+          <div class="field">
+            <label>Email <span class="optional-badge">opcional</span></label>
+            <input type="email" name="email" placeholder="ex: manuel@costa.pt">
+          </div>
+
+          <div class="field">
+            <label>Website <span class="optional-badge">opcional</span></label>
+            <input type="url" name="site" placeholder="ex: www.manuel-costa.pt">
+          </div>
+        </div>
+
+        <!-- Condições -->
+        <div class="section">
+          <div class="section-title">Condições do orçamento</div>
+
+          <div class="field">
+            <label>Validade do orçamento <span class="optional-badge">opcional</span></label>
+            <input type="text" name="validade" placeholder="ex: 30 dias">
+          </div>
+
+          <div class="field">
+            <label>Condições de pagamento <span class="optional-badge">opcional</span></label>
+            <textarea name="condicoes_pagamento" placeholder="ex: 50% na adjudicação, 50% na conclusão da obra"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Notas de rodapé <span class="optional-badge">opcional</span></label>
+            <textarea name="notas" placeholder="ex: Chamada para rede móvel nacional. Preços incluem IVA à taxa legal em vigor."></textarea>
+          </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="section">
+          <div class="section-title">Logo</div>
+
+          <div class="field">
+            <label>Logo da empresa <span class="optional-badge">opcional</span></label>
+            <div class="logo-upload" id="logoUpload">
+              <input type="file" name="logo" id="logoInput" accept="image/*">
+              <div id="logoPlaceholder">
+                <div class="logo-upload-icon">🖼️</div>
+                <p>Clica para enviar o teu logo</p>
+                <small>PNG, JPG ou SVG — máx. 2MB</small>
+              </div>
+              <img id="logoPreview" class="logo-preview" alt="Logo preview">
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <span id="submitText">💾 Guardar perfil</span>
+          <div class="spinner" id="submitSpinner"></div>
+        </button>
+
+        <div class="msg success" id="msgSuccess">✅ Perfil guardado com sucesso! Podes fechar esta página e voltar ao Telegram.</div>
+        <div class="msg error" id="msgError">❌ Ocorreu um erro. Tenta novamente.</div>
+
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const GAS_URL = "URL_DO_GAS_AQUI"; // substitui pelo URL do teu GAS
+
+    // Lê o token do URL
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+
+    // Elementos
+    const loadingScreen = document.getElementById("loadingScreen");
+    const errorScreen   = document.getElementById("errorScreen");
+    const successScreen = document.getElementById("successScreen");
+    const formWrapper   = document.getElementById("formWrapper");
+    const form          = document.getElementById("perfilForm");
+    const progressFill  = document.getElementById("progressFill");
+    const submitBtn     = document.getElementById("submitBtn");
+    const submitText    = document.getElementById("submitText");
+    const submitSpinner = document.getElementById("submitSpinner");
+
+    // Sem token — mostra erro
+    if (!token) {
+      loadingScreen.style.display = "none";
+      errorScreen.style.display   = "block";
+    } else {
+      // Carrega dados existentes do perfil
+      carregarPerfil();
+    }
+
+    async function carregarPerfil() {
+      try {
+        const res  = await fetch(GAS_URL + "?action=getPerfil&token=" + token);
+        const data = await res.json();
+
+        if (!data.ok) {
+          loadingScreen.style.display = "none";
+          formWrapper.style.display   = "none";
+          errorScreen.style.display   = "block";
+          return;
+        }
+
+        // Preenche campos com dados existentes
+        const p = data.perfil;
+        if (p) {
+          preencherCampo("nome",                p.nome);
+          preencherCampo("nif",                 p.nif);
+          preencherCampo("morada",              p.morada);
+          preencherCampo("cp",                  p.cp);
+          preencherCampo("localidade",          p.localidade);
+          preencherCampo("telefone",            p.telefone);
+          preencherCampo("email",               p.email);
+          preencherCampo("site",                p.site);
+          preencherCampo("iban",                p.iban);
+          preencherCampo("validade",            p.validade);
+          preencherCampo("condicoes_pagamento", p.condicoes_pagamento);
+          preencherCampo("notas",               p.notas);
+
+          if (p.taxa_iva !== undefined && p.taxa_iva !== "") {
+            selecionarIva(String(p.taxa_iva));
+          }
+        }
+
+        loadingScreen.style.display = "none";
+        atualizarProgresso();
+
+      } catch(e) {
+        loadingScreen.style.display = "none";
+        document.getElementById("msgError").style.display = "block";
+        document.getElementById("msgError").textContent = "❌ Erro ao carregar o perfil. Tenta novamente.";
+      }
+    }
+
+    function preencherCampo(nome, valor) {
+      if (!valor) return;
+      const el = form.querySelector("[name='" + nome + "']");
+      if (el) el.value = valor;
+    }
+
+    // IVA
+    const ivaBtns = document.querySelectorAll(".iva-btn");
+    ivaBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        ivaBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("taxaIvaInput").value = btn.dataset.value;
+        atualizarProgresso();
+      });
+    });
+
+    function selecionarIva(valor) {
+      ivaBtns.forEach(btn => {
+        if (btn.dataset.value === valor) {
+          btn.classList.add("active");
+          document.getElementById("taxaIvaInput").value = valor;
+        }
+      });
+    }
+
+    // Preview do logo
+    document.getElementById("logoInput").addEventListener("change", function() {
+      const file = this.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const preview = document.getElementById("logoPreview");
+        const placeholder = document.getElementById("logoPlaceholder");
+        preview.src = e.target.result;
+        preview.style.display = "block";
+        placeholder.style.display = "none";
+      };
+      reader.readAsDataURL(file);
+      atualizarProgresso();
+    });
+
+    // Progresso
+    function atualizarProgresso() {
+      const campos = ["nome", "nif", "morada", "telefone", "email", "iban"];
+      let preenchidos = 0;
+      campos.forEach(c => {
+        const el = form.querySelector("[name='" + c + "']");
+        if (el && el.value.trim()) preenchidos++;
+      });
+      if (document.getElementById("taxaIvaInput").value) preenchidos++;
+      const pct = Math.round((preenchidos / (campos.length + 1)) * 100);
+      progressFill.style.width = pct + "%";
+    }
+
+    // Atualiza progresso ao escrever
+    form.querySelectorAll("input, textarea").forEach(el => {
+      el.addEventListener("input", atualizarProgresso);
+    });
+
+    // Submit
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const nome    = form.querySelector("[name='nome']").value.trim();
+      const taxaIva = document.getElementById("taxaIvaInput").value;
+
+      if (!nome) {
+        mostrarErro("Por favor preenche o teu nome.");
+        return;
+      }
+      if (!taxaIva) {
+        mostrarErro("Por favor seleciona a tua taxa de IVA.");
+        return;
+      }
+
+      // Loading
+      submitBtn.disabled   = true;
+      submitText.style.display  = "none";
+      submitSpinner.style.display = "block";
+
+      try {
+        // Converte logo para base64 se existir
+        let logoBase64 = null;
+        const logoFile = document.getElementById("logoInput").files[0];
+        if (logoFile) {
+          logoBase64 = await fileToBase64(logoFile);
+        }
+
+        const payload = {
+          action:              "guardarPerfil",
+          token:               token,
+          nome:                nome,
+          taxa_iva:            taxaIva,
+          nif:                 form.querySelector("[name='nif']").value.trim(),
+          morada:              form.querySelector("[name='morada']").value.trim(),
+          cp:                  form.querySelector("[name='cp']").value.trim(),
+          localidade:          form.querySelector("[name='localidade']").value.trim(),
+          telefone:            form.querySelector("[name='telefone']").value.trim(),
+          email:               form.querySelector("[name='email']").value.trim(),
+          site:                form.querySelector("[name='site']").value.trim(),
+          iban:                form.querySelector("[name='iban']").value.trim(),
+          validade:            form.querySelector("[name='validade']").value.trim(),
+          condicoes_pagamento: form.querySelector("[name='condicoes_pagamento']").value.trim(),
+          notas:               form.querySelector("[name='notas']").value.trim(),
+          logo_base64:         logoBase64,
+          logo_type:           logoFile ? logoFile.type : null
+        };
+
+        const res  = await fetch(GAS_URL, {
+          method: "POST",
+          body:   JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.ok) {
+          formWrapper.style.display   = "none";
+          successScreen.style.display = "block";
+        } else {
+          mostrarErro(data.erro || "Ocorreu um erro. Tenta novamente.");
+        }
+
+      } catch(err) {
+        mostrarErro("Erro de ligação. Verifica a tua internet e tenta novamente.");
+      } finally {
+        submitBtn.disabled          = false;
+        submitText.style.display    = "inline";
+        submitSpinner.style.display = "none";
+      }
+    });
+
+    function mostrarErro(msg) {
+      const el = document.getElementById("msgError");
+      el.textContent    = "❌ " + msg;
+      el.style.display  = "block";
+      el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload  = () => resolve(reader.result.split(",")[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+  </script>
+</body>
+</html>
