@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orçamentos Express — Orçamentos profissionais em segundos</title>
+  <meta name="description" content="Cria orçamentos profissionais em PDF pelo Telegram. Fala ou escreve, nós tratamos do resto. 39€/ano.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #940580;
+      --primary-dark: #6d0460;
+      --primary-light: #bf07a6;
+      --primary-glow: rgba(148, 5, 128, 0.15);
+      --bg: #f7f4f2;
+      --bg2: #eeeae6;
+      --dark: #0f0a0e;
+      --dark2: #1a121a;
+      --text: #1a0e18;
+      --text-muted: #7a6878;
+      --white: #ffffff;
+      --border: rgba(148, 5, 128, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Instrument Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(247, 244, 242, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 0 16px rgba(148,5,128,0.3);
+    }
+
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo-text span { color: var(--primary); }
+
+    .nav-cta {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 99px;
+      padding: 10px 22px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(148,5,128,0.25);
+    }
+
+    .nav-cta:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(148,5,128,0.35);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(148,5,128,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(148,5,128,0.05) 0%, transparent 60%);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 32px;
+      box-shadow: 0 2px 12px rgba(148,5,128,0.1);
+      animation: fadeDown 0.6s ease both;
+      position: relative;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(42px, 8vw, 80px);
+      line-height: 1.0;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+      position: relative;
+      animation: fadeDown 0.6s 0.1s ease both;
+      max-width: 900px;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--primary);
+      position: relative;
+    }
+
+    h1 em::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      border-radius: 99px;
+      opacity: 0.4;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--text-muted);
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 560px;
+      margin-bottom: 48px;
+      animation: fadeDown 0.6s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeDown 0.6s 0.3s ease both;
+      position: relative;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 18px 36px;
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 8px 32px rgba(148,5,128,0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(148,5,128,0.4);
+    }
+
+    .btn-secondary {
+      color: var(--text-muted);
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .btn-secondary:hover { color: var(--primary); }
+
+    .price-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 16px;
+      animation: fadeDown 0.6s 0.4s ease both;
+      position: relative;
+    }
+
+    .price-note strong { color: var(--primary); font-weight: 600; }
+
+    /* ── VIDEO ── */
+    .video-section {
+      padding: 0 24px 100px;
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeUp 0.8s 0.5s ease both;
+      position: relative;
+    }
+
+    .video-wrapper {
+      background: var(--dark);
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 40px 80px rgba(0,0,0,0.2),
+        0 0 0 1px rgba(255,255,255,0.05),
+        inset 0 0 0 1px rgba(148,5,128,0.1);
+      position: relative;
+    }
+
+    .video-placeholder {
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .video-play-btn {
+      width: 72px;
+      height: 72px;
+      background: rgba(148,5,128,0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 28px;
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(148,5,128,0.5);
+    }
+
+    .video-placeholder p {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .section {
+      padding: 100px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 60px;
+      max-width: 600px;
+    }
+
+    /* Steps */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .step {
+      position: relative;
+    }
+
+    .step-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 72px;
+      font-weight: 800;
+      color: var(--bg2);
+      line-height: 1;
+      margin-bottom: -16px;
+      letter-spacing: -3px;
+    }
+
+    .step-icon {
+      width: 52px;
+      height: 52px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(148,5,128,0.08);
+    }
+
+    .step h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .step p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── FEATURES ── */
+    .features-bg {
+      background: var(--dark);
+      color: white;
+      padding: 100px 24px;
+    }
+
+    .features-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .features-bg .section-label { color: var(--primary-light); }
+    .features-bg .section-title { color: white; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover {
+      background: rgba(148,5,128,0.08);
+      border-color: rgba(148,5,128,0.2);
+      transform: translateY(-2px);
+    }
+
+    .feature-card:first-child {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(148,5,128,0.15), rgba(148,5,128,0.05));
+      border-color: rgba(148,5,128,0.2);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .feature-card p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    .feature-highlight {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      color: white;
+    }
+
+    .feature-highlight span { color: var(--primary-light); }
+
+    /* ── PRICING ── */
+    .pricing-section {
+      padding: 100px 24px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .pricing-card {
+      background: white;
+      border-radius: 28px;
+      padding: 48px;
+      box-shadow: 0 20px 60px rgba(148,5,128,0.1), 0 0 0 1px var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      background: rgba(148,5,128,0.1);
+      color: var(--primary);
+      border-radius: 99px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .pricing-price {
+      font-family: 'Syne', sans-serif;
+      font-size: 72px;
+      font-weight: 800;
+      letter-spacing: -3px;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .pricing-price sup {
+      font-size: 28px;
+      vertical-align: super;
+      letter-spacing: 0;
+    }
+
+    .pricing-period {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 40px;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      font-size: 15px;
+      border-bottom: 1px solid var(--bg2);
+      line-height: 1.4;
+    }
+
+    .pricing-features li:last-child { border-bottom: none; }
+
+    .check {
+      width: 22px;
+      height: 22px;
+      background: rgba(148,5,128,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 12px;
+      color: var(--primary);
+      margin-top: 1px;
+    }
+
+    .btn-full {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 18px;
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 8px 32px rgba(148,5,128,0.25);
+      display: block;
+      text-align: center;
+    }
+
+    .btn-full:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(148,5,128,0.35);
+    }
+
+    .pricing-guarantee {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      padding: 0 24px 100px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--bg2);
+      padding: 24px 0;
+    }
+
+    .faq-question {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      letter-spacing: -0.3px;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 24px;
+      color: var(--primary);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .faq-item.open .faq-question::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding-top: 16px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.4);
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    footer .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: white;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    footer .footer-logo span { color: var(--primary-light); }
+
+    footer p { font-size: 13px; line-height: 1.8; }
+
+    footer a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--primary-light); }
+
+    /* ── ANIMAÇÕES ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .steps { grid-template-columns: 1fr; gap: 40px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .feature-card:first-child { grid-column: span 1; grid-template-columns: 1fr; }
+      .pricing-card { padding: 32px 24px; }
+      .pricing-price { font-size: 56px; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { letter-spacing: -1px; }
+      .hero { padding: 100px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">⚡</div>
+      <div class="nav-logo-text">Orçamentos<span>Express</span></div>
+    </a>
+    <a href="#preco" class="nav-cta">Começar agora</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-badge">Novo — Lançamento em Portugal</div>
+    <h1>Orçamentos profissionais<br>em <em>segundos</em></h1>
+    <p class="hero-sub">Fala ou escreve no Telegram. O bot cria o orçamento em PDF e envia para o teu cliente. Sem formulários, sem computador, sem complicações.</p>
+    <div class="hero-actions">
+      <a href="#preco" class="btn-primary">⚡ Quero experimentar</a>
+      <a href="#como-funciona" class="btn-secondary">Ver como funciona →</a>
+    </div>
+    <p class="price-note">Só <strong>39€/ano</strong> · Cancela quando quiseres</p>
+  </section>
+
+  <!-- VIDEO -->
+  <div class="video-section">
+    <div class="video-wrapper">
+      <div class="video-placeholder">
+        <div class="video-play-btn">▶</div>
+        <p>Vídeo demonstração — brevemente</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="como-funciona">
+    <div class="reveal">
+      <p class="section-label">Como funciona</p>
+      <h2 class="section-title">Três passos.<br>Menos de 30 segundos.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-number">01</div>
+        <div class="step-icon">🎙️</div>
+        <h3>Fala ou escreve</h3>
+        <p>Abre o Telegram e descreve o orçamento como se estivesses a falar com um colega. Por voz ou texto — como preferires.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-number">02</div>
+        <div class="step-icon">⚡</div>
+        <h3>O bot trata do resto</h3>
+        <p>A inteligência artificial interpreta o que disseste, organiza os serviços e gera um PDF profissional com os teus dados.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-number">03</div>
+        <div class="step-icon">📄</div>
+        <h3>Recebe o PDF</h3>
+        <p>Em segundos recebes o orçamento em PDF pronto a enviar ao cliente. Com o teu logo, NIF, condições de pagamento e tudo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <div class="features-bg">
+    <div class="features-inner">
+      <p class="section-label reveal">Para quem é</p>
+      <h2 class="section-title reveal">Feito para quem trabalha<br>com as mãos.</h2>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div>
+            <p class="feature-highlight">Chega de perder<br><span>horas a fazer orçamentos.</span></p>
+          </div>
+          <div>
+            <p style="color: rgba(255,255,255,0.5); font-size: 16px; line-height: 1.7;">Canalizadores, eletricistas, pintores, carpinteiros — qualquer prestador de serviços pode criar orçamentos profissionais sem saber de informática.</p>
+          </div>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">📱</div>
+          <h3>Só precisas do Telegram</h3>
+          <p>Sem apps novas, sem curvas de aprendizagem. Usas o Telegram que já tens no telemóvel.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🎙️</div>
+          <h3>Voz ou texto</h3>
+          <p>Preferes falar? Grava um áudio. Preferes escrever? Escreve. O bot percebe os dois.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🏷️</div>
+          <h3>Com a tua identidade</h3>
+          <p>O teu logo, NIF, morada, IBAN e condições de pagamento em todos os orçamentos automaticamente.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">⚖️</div>
+          <h3>IVA calculado</h3>
+          <p>Subtotal, IVA e total calculados automaticamente com a taxa que configurares.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <section class="pricing-section" id="preco">
+    <div class="reveal">
+      <p class="section-label" style="text-align:center;">Preço</p>
+      <h2 class="section-title" style="margin: 0 auto 48px; text-align:center;">Simples e sem surpresas.</h2>
+    </div>
+    <div class="pricing-card reveal">
+      <div class="pricing-badge">🚀 Oferta de lançamento</div>
+      <div class="pricing-price"><sup>€</sup>39</div>
+      <p class="pricing-period">por ano · faturação anual</p>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> Orçamentos ilimitados em PDF</li>
+        <li><span class="check">✓</span> Voz e texto no Telegram</li>
+        <li><span class="check">✓</span> PDF com o teu logo e dados</li>
+        <li><span class="check">✓</span> IVA calculado automaticamente</li>
+        <li><span class="check">✓</span> Configuração em menos de 5 minutos</li>
+        <li><span class="check">✓</span> Suporte por Telegram</li>
+      </ul>
+      <a href="mailto:orcamentosexpressbot@gmail.com?subject=Quero%20experimentar%20o%20Or%C3%A7amentos%20Express&body=Ol%C3%A1%2C%20tenho%20interesse%20no%20Or%C3%A7amentos%20Express.%20Como%20posso%20come%C3%A7ar%3F" class="btn-full">⚡ Quero começar agora</a>
+      <p class="pricing-guarantee">🔒 Pagamento seguro · Suporte incluído</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="reveal">
+      <p class="section-label">Perguntas frequentes</p>
+      <h2 class="section-title" style="margin-bottom: 40px;">Tens dúvidas?<br>Nós respondemos.</h2>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-question">Preciso de saber usar computadores?</div>
+      <div class="faq-answer">Não. Se sabes usar o Telegram, sabes usar o Orçamentos Express. É tudo feito pelo telemóvel, por voz ou texto.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-question">Como recebo o orçamento em PDF?</div>
+      <div class="faq-answer">O bot envia o PDF diretamente no Telegram, em segundos. Podes partilhá-lo por WhatsApp, email ou o que preferires.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-question">O meu logo e dados aparecem no orçamento?</div>
+      <div class="faq-answer">Sim. Na configuração inicial carregas o teu logo, NIF, morada, IBAN e condições de pagamento. Esses dados aparecem em todos os orçamentos automaticamente.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-question">Os meus dados estão seguros?</div>
+      <div class="faq-answer">Sim. Os teus dados são processados de forma segura e nunca partilhados com terceiros. Cumprimos o RGPD e todos os regulamentos europeus de proteção de dados.</div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-question">Posso cancelar quando quiser?</div>
+      <div class="faq-answer">Sim. A subscrição é anual mas podes cancelar a qualquer momento. Não há contratos nem compromissos.</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Orçamentos<span>Express</span></div>
+    <p>
+      Feito em Portugal 🇵🇹<br>
+      <a href="termos.html">Termos e Condições</a> · <a href="privacidade.html">Política de Privacidade</a><br><br>
+      © 2026 Orçamentos Express · Todos os direitos reservados
+    </p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // FAQ
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.querySelector('.faq-question').addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
