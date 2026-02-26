@@ -6,7 +6,7 @@
   <title>Orçamentos Express — Orçamentos profissionais em segundos</title>
   <meta name="description" content="Cria orçamentos profissionais em PDF pelo Telegram. Fala ou escreve, nós tratamos do resto. 39€/ano.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #940580;
@@ -68,7 +68,7 @@
     }
 
     .nav-logo-text {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 800;
       font-size: 18px;
       color: var(--text);
@@ -151,7 +151,7 @@
     }
 
     h1 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 800;
       font-size: clamp(42px, 8vw, 80px);
       line-height: 1.0;
@@ -206,7 +206,7 @@
       border: none;
       border-radius: 14px;
       padding: 18px 36px;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 16px;
       font-weight: 700;
       cursor: pointer;
@@ -303,7 +303,7 @@
     }
 
     .section-label {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 3px;
@@ -313,7 +313,7 @@
     }
 
     .section-title {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 800;
       font-size: clamp(32px, 5vw, 52px);
       letter-spacing: -1.5px;
@@ -334,7 +334,7 @@
     }
 
     .step-number {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 72px;
       font-weight: 800;
       color: var(--bg2);
@@ -358,7 +358,7 @@
     }
 
     .step h3 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 20px;
       font-weight: 700;
       margin-bottom: 10px;
@@ -422,7 +422,7 @@
     }
 
     .feature-card h3 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 20px;
       font-weight: 700;
       margin-bottom: 10px;
@@ -436,7 +436,7 @@
     }
 
     .feature-highlight {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(28px, 4vw, 40px);
       font-weight: 800;
       letter-spacing: -1px;
@@ -483,7 +483,7 @@
     }
 
     .pricing-price {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 72px;
       font-weight: 800;
       letter-spacing: -3px;
@@ -543,7 +543,7 @@
       border: none;
       border-radius: 14px;
       padding: 18px;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 17px;
       font-weight: 700;
       cursor: pointer;
@@ -583,7 +583,7 @@
     }
 
     .faq-question {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 17px;
       font-weight: 700;
       cursor: pointer;
@@ -629,7 +629,7 @@
     }
 
     footer .footer-logo {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 800;
       font-size: 20px;
       color: white;
@@ -673,17 +673,47 @@
 
     /* ── MOBILE ── */
     @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
-      .steps { grid-template-columns: 1fr; gap: 40px; }
-      .features-grid { grid-template-columns: 1fr; }
-      .feature-card:first-child { grid-column: span 1; grid-template-columns: 1fr; }
-      .pricing-card { padding: 32px 24px; }
+      nav { padding: 14px 20px; }
+      nav .nav-logo-text { font-size: 16px; }
+
+      .hero { padding: 100px 20px 60px; min-height: auto; }
+      h1 { font-size: clamp(36px, 10vw, 56px); letter-spacing: -1px; line-height: 1.1; }
+      .hero-sub { font-size: 16px; }
+      .hero-actions { flex-direction: column; width: 100%; }
+      .btn-primary { width: 100%; justify-content: center; padding: 16px 24px; }
+      .btn-secondary { margin-top: 4px; }
+
+      .video-section { padding: 0 16px 60px; }
+
+      .section { padding: 60px 20px; }
+      .section-title { font-size: clamp(28px, 7vw, 40px); margin-bottom: 40px; }
+
+      .steps { grid-template-columns: 1fr; gap: 32px; }
+      .step-number { font-size: 48px; }
+
+      .features-bg { padding: 60px 20px; }
+      .features-grid { grid-template-columns: 1fr; gap: 16px; }
+      .feature-card:first-child {
+        grid-column: span 1;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .feature-highlight { font-size: clamp(22px, 6vw, 32px); }
+      .feature-card { padding: 24px; }
+
+      .pricing-section { padding: 60px 20px; }
+      .pricing-card { padding: 28px 20px; }
       .pricing-price { font-size: 56px; }
+      .pricing-features li { font-size: 14px; }
+
+      .faq-section { padding: 0 20px 60px; }
+      .faq-question { font-size: 15px; }
     }
 
     @media (max-width: 480px) {
-      h1 { letter-spacing: -1px; }
-      .hero { padding: 100px 20px 60px; }
+      nav .nav-logo-text { display: none; }
+      h1 { font-size: clamp(32px, 9vw, 44px); }
+      .hero-badge { font-size: 12px; padding: 6px 14px; }
     }
   </style>
 </head>
@@ -805,7 +835,7 @@
         <li><span class="check">✓</span> Configuração em menos de 5 minutos</li>
         <li><span class="check">✓</span> Suporte por Telegram</li>
       </ul>
-      <a href="mailto:orcamentosexpressbot@gmail.com?subject=Quero%20experimentar%20o%20Or%C3%A7amentos%20Express&body=Ol%C3%A1%2C%20tenho%20interesse%20no%20Or%C3%A7amentos%20Express.%20Como%20posso%20come%C3%A7ar%3F" class="btn-full">⚡ Quero começar agora</a>
+      <a href="/cdn-cgi/l/email-protection#e9869b8a88848c879d869a8c91999b8c9a9aa98e84888085c78a8684d69a9c8b838c8a9dd4b89c8c9b86ccdbd98c91998c9b80848c879d889bccdbd986ccdbd9a69bccaadacca8de88848c879d869accdbd9ac91999b8c9a9acf8b868d90d4a685ccaadacca8d8ccdbaaccdbd99d8c878186ccdbd980879d8c9b8c9a9a8cccdbd98786ccdbd9a69bccaadacca8de88848c879d869accdbd9ac91999b8c9a9ac7ccdbd9aa868486ccdbd999869a9a86ccdbd98a86848cccaadacca8de889bccdaaf" class="btn-full">⚡ Quero começar agora</a>
       <p class="pricing-guarantee">🔒 Pagamento seguro · Suporte incluído</p>
     </div>
   </section>
@@ -853,7 +883,7 @@
     </p>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(el => {
@@ -866,14 +896,4 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     // FAQ
-    document.querySelectorAll('.faq-item').forEach(item => {
-      item.querySelector('.faq-question').addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
-      });
-    });
-  </script>
-
-</body>
-</html>
+    document.querySelectorAll('.faq-item').forEach(item
