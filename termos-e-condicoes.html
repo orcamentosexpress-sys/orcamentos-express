@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termos e Condições — Orçamentos Express</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #940580;
+      --primary-light: #bf07a6;
+      --bg: #f7f4f2;
+      --bg2: #eeeae6;
+      --dark: #0f0a0e;
+      --text: #1a0e18;
+      --text-muted: #7a6878;
+      --border: rgba(148, 5, 128, 0.12);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Instrument Sans', sans-serif; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 40px; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(247,244,242,0.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-icon {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px;
+    }
+    .nav-logo-text { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 17px; color: var(--text); }
+    .nav-logo-text span { color: var(--primary); }
+    .nav-back { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-back:hover { color: var(--primary); }
+
+    .container { max-width: 780px; margin: 0 auto; padding: 100px 24px 80px; }
+
+    .doc-header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--bg2); }
+    .doc-badge {
+      display: inline-block; background: rgba(148,5,128,0.1); color: var(--primary);
+      border-radius: 99px; padding: 5px 14px; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.5px; margin-bottom: 16px;
+    }
+    .doc-title {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(28px, 5vw, 42px); letter-spacing: -1px; line-height: 1.1; margin-bottom: 12px;
+    }
+    .doc-meta { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    .doc-body h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 16px;
+      letter-spacing: 0.5px; text-transform: uppercase; color: var(--primary);
+      margin: 48px 0 16px; padding-top: 24px; border-top: 2px solid var(--bg2);
+    }
+    .doc-body h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      font-size: 16px; margin: 24px 0 10px; color: var(--text); letter-spacing: -0.2px;
+    }
+    .doc-body p { font-size: 15px; line-height: 1.75; color: #3a2a38; margin-bottom: 12px; }
+    .doc-body ul, .doc-body ol { padding-left: 22px; margin-bottom: 14px; }
+    .doc-body ul li, .doc-body ol li { font-size: 15px; line-height: 1.75; color: #3a2a38; margin-bottom: 6px; }
+    .doc-body a { color: var(--primary); text-decoration: none; }
+    .doc-body a:hover { text-decoration: underline; }
+    .doc-body strong { color: var(--text); font-weight: 600; }
+
+    .identity-box {
+      background: rgba(148,5,128,0.06); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 24px; margin: 16px 0 20px;
+      font-size: 15px; line-height: 2; color: #3a2a38;
+    }
+
+    .doc-footer {
+      margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--bg2);
+      font-size: 13px; color: var(--text-muted); font-style: italic;
+    }
+
+    footer { background: var(--dark); color: rgba(255,255,255,0.35); padding: 44px 24px; text-align: center; }
+    .footer-logo { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 19px; color: white; margin-bottom: 14px; }
+    .footer-logo span { color: var(--primary-light); }
+    footer p { font-size: 13px; line-height: 1.9; }
+    footer a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--primary-light); }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 18px; }
+      .container { padding: 80px 18px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">⚡</div>
+      <div class="nav-logo-text">Orçamentos<span>Express</span></div>
+    </a>
+    <a href="index.html" class="nav-back">← Voltar</a>
+  </nav>
+
+  <div class="container">
+    <div class="doc-header">
+      <div class="doc-badge">DOCUMENTO LEGAL</div>
+      <h1 class="doc-title">Termos e Condições de Utilização</h1>
+      <p class="doc-meta">
+        <strong>Versão:</strong> 1.0 &nbsp;·&nbsp;
+        <strong>Data de entrada em vigor:</strong> [DATA] &nbsp;·&nbsp;
+        <strong>Última atualização:</strong> [DATA]
+      </p>
+    </div>
+
+    <div class="doc-body">
+
+      <h2>1. Identificação do Prestador do Serviço</h2>
+      <p>O serviço <strong>Orçamentos Express</strong> é disponibilizado por:</p>
+      <div class="identity-box">
+        <strong>Titular:</strong> Ana Rita [apelido a completar]<br>
+        <strong>NIF:</strong> 220 000 000<br>
+        <strong>Morada:</strong> Rua José Joaquim, 4455-000 Matosinhos, Portugal<br>
+        <strong>Email de contacto:</strong> <a href="mailto:O_TEU_EMAIL">O_TEU_EMAIL</a><br>
+        <strong>Actividade:</strong> Prestação de serviços na área de tecnologia e automação para profissionais independentes
+      </div>
+      <p>A titular exerce atividade a título individual e é a única responsável pelo tratamento dos dados pessoais, nos termos do Regulamento (UE) 2016/679 do Parlamento Europeu e do Conselho, de 27 de abril de 2016 (doravante «RGPD»).</p>
+
+      <h2>2. Objeto e Natureza do Serviço</h2>
+
+      <h3>2.1 Descrição</h3>
+      <p>O <strong>Orçamentos Express</strong> é um serviço de software como serviço (SaaS), de natureza exclusivamente B2B, destinado a profissionais que exercem atividade por conta própria ou no âmbito de uma empresa (designados nestes Termos por «Profissional» ou «Utilizador»), que permite a geração automatizada de orçamentos em formato PDF através de um bot no Telegram.</p>
+      <p>O serviço não constitui uma plataforma de marketplace, não estabelece intermediação entre profissionais e os respetivos clientes, nem disponibiliza qualquer serviço de pagamento, crédito, recomendação ou avaliação de prestadores.</p>
+
+      <h3>2.2 Funcionamento</h3>
+      <p>O fluxo operacional do serviço é o seguinte:</p>
+      <ol>
+        <li>O Profissional regista-se através de um formulário disponível na página do serviço (alojada em GitHub Pages), preenchendo os dados do seu perfil profissional;</li>
+        <li>Após validação do acesso (associada ao número de telefone registado), o Profissional pode interagir com o bot do Telegram do Orçamentos Express;</li>
+        <li>O Profissional envia ao bot uma mensagem de texto ou áudio descrevendo os elementos do orçamento que pretende gerar;</li>
+        <li>O sistema processa a mensagem recorrendo a componentes de inteligência artificial (transcrição de áudio e interpretação de linguagem natural), extrai os dados estruturados do orçamento e gera um documento PDF personalizado com os dados do perfil do Profissional;</li>
+        <li>O PDF é enviado ao Profissional através do Telegram, para que este o possa remeter ao seu cliente pelos meios que entender.</li>
+      </ol>
+      <p>O serviço não armazena dados dos clientes finais dos Profissionais de forma persistente. Os dados mencionados na mensagem (nome e morada do cliente, itens e valores) são utilizados apenas para a geração do PDF e eliminados imediatamente após, não sendo guardados em qualquer base de dados.</p>
+
+      <h3>2.3 Componentes de Inteligência Artificial</h3>
+      <p>O serviço recorre às seguintes tecnologias de IA, desenvolvidas e disponibilizadas por terceiros:</p>
+      <ul>
+        <li><strong>Groq Whisper</strong> — modelo de transcrição automática de áudio para texto;</li>
+        <li><strong>Groq LLaMA 3.3 70B</strong> — modelo de linguagem de grande escala (LLM) para interpretação e extração estruturada de informação a partir do texto.</li>
+      </ul>
+      <p>Estas tecnologias funcionam como subcontratantes (processadores) de dados, nos termos do artigo 28.º do RGPD, e como fornecedores de modelos de IA de finalidade geral, ao abrigo do Regulamento (UE) 2024/1689 (doravante «Regulamento IA» ou «AI Act»).</p>
+      <p>O Orçamentos Express atua como <strong>responsável pela implantação</strong> destes sistemas de IA, nos termos do artigo 3.º, n.º 4, do Regulamento IA, utilizando-os exclusivamente para a finalidade descrita no presente artigo.</p>
+
+      <h2>3. Âmbito de Aplicação e Elegibilidade</h2>
+
+      <h3>3.1 Destinatários</h3>
+      <p>O serviço destina-se exclusivamente a profissionais adultos (maiores de 18 anos) que exerçam atividade profissional por conta própria ou no âmbito de uma empresa, em Portugal.</p>
+
+      <h3>3.2 Exclusões</h3>
+      <p>Não são elegíveis para utilização do serviço:</p>
+      <ul>
+        <li>Pessoas singulares sem atividade profissional registada ou sem NIF de atividade;</li>
+        <li>Menores de 18 anos;</li>
+        <li>Utilizadores que pretendam utilizar o serviço para fins ilegais, fraudulentos ou contrários à boa-fé.</li>
+      </ul>
+
+      <h3>3.3 Aceitação dos Termos</h3>
+      <p>O registo no serviço implica a aceitação plena, livre e esclarecida dos presentes Termos e Condições, bem como da Política de Privacidade. Caso o Profissional não concorde com os termos, deverá abster-se de se registar ou de utilizar o serviço.</p>
+
+      <h2>4. Registo e Acesso</h2>
+
+      <h3>4.1 Processo de Registo</h3>
+      <p>O registo é efetuado mediante o preenchimento de um formulário eletrónico disponível na página do serviço. O Profissional compromete-se a fornecer informações verdadeiras, exatas, completas e atualizadas.</p>
+
+      <h3>4.2 Dados de Perfil</h3>
+      <p>Aquando do registo, o Profissional fornece os seguintes dados, que integrarão o seu perfil e serão incluídos nos PDFs gerados:</p>
+      <ul>
+        <li>Nome completo ou denominação comercial / da empresa;</li>
+        <li>NIF (Número de Identificação Fiscal);</li>
+        <li>Morada completa (rua, código postal, localidade);</li>
+        <li>Número de telefone (usado para validação e controlo de acesso);</li>
+        <li>Endereço de email;</li>
+        <li>Website (facultativo);</li>
+        <li>IBAN (para inclusão nas condições de pagamento do orçamento);</li>
+        <li>Taxa de IVA aplicável;</li>
+        <li>Prazo de validade dos orçamentos;</li>
+        <li>Condições de pagamento;</li>
+        <li>Notas de rodapé personalizadas;</li>
+        <li>Logótipo (facultativo, em formato de imagem).</li>
+      </ul>
+
+      <h3>4.3 Validação e Controlo de Acesso</h3>
+      <p>O acesso ao bot do Telegram é validado através da associação do número de telefone fornecido no registo ao identificador Telegram (chat ID) do Profissional. O Profissional é responsável por manter a confidencialidade da sua conta Telegram e por não permitir que terceiros utilizem o serviço em seu nome.</p>
+
+      <h3>4.4 Obrigação de Atualização</h3>
+      <p>O Profissional compromete-se a atualizar os seus dados de perfil sempre que ocorrerem alterações, garantindo a exatidão dos documentos gerados pelo serviço.</p>
+
+      <h2>5. Condições de Utilização</h2>
+
+      <h3>5.1 Utilização Permitida</h3>
+      <p>O serviço destina-se exclusivamente à geração de orçamentos profissionais no âmbito da atividade do Profissional. É permitido: enviar mensagens de texto ou áudio descrevendo os elementos do orçamento; receber os PDFs gerados e remeter para os respetivos clientes.</p>
+
+      <h3>5.2 Utilizações Proibidas</h3>
+      <p>É expressamente proibido:</p>
+      <ol type="a">
+        <li>Utilizar o serviço para fins distintos da geração de orçamentos profissionais;</li>
+        <li>Transmitir ao bot dados pessoais de terceiros que não sejam estritamente necessários para a geração do orçamento (nome e morada do cliente);</li>
+        <li>Enviar conteúdos ilícitos, discriminatórios, difamatórios ou que violem direitos de terceiros;</li>
+        <li>Tentar contornar, desativar ou interferir com os mecanismos de segurança ou controlo de acesso;</li>
+        <li>Partilhar o acesso com terceiros não autorizados;</li>
+        <li>Utilizar o serviço de forma automatizada ou em escala que exceda o uso normal individual;</li>
+        <li>Fazer engenharia inversa, descompilar ou tentar extrair o código-fonte ou a lógica dos sistemas que compõem o serviço.</li>
+      </ol>
+
+      <h3>5.3 Responsabilidade pelo Conteúdo</h3>
+      <p>O Profissional é o único responsável pelo conteúdo das mensagens que envia ao bot, pela exatidão dos dados do orçamento, e pela forma como utiliza e distribui os PDFs gerados. O Orçamentos Express não revê, valida nem aprova o conteúdo dos orçamentos gerados.</p>
+
+      <h2>6. Inteligência Artificial — Transparência e Limitações</h2>
+
+      <h3>6.1 Transparência</h3>
+      <p>Em cumprimento do artigo 50.º, n.º 1, do Regulamento IA (Regulamento (UE) 2024/1689), o Orçamentos Express informa expressamente que o serviço recorre a sistemas de inteligência artificial para processar as mensagens de texto e áudio enviadas pelo Profissional. O Profissional é informado desta circunstância de forma clara antes do início da utilização do serviço.</p>
+      <p>O bot do Telegram identificar-se-á como sistema automatizado sempre que tal não seja óbvio para um utilizador razoavelmente informado.</p>
+
+      <h3>6.2 Ausência de Decisões Automatizadas com Efeitos Jurídicos sobre Terceiros</h3>
+      <p>O sistema de IA utilizado não toma decisões automatizadas que produzam efeitos jurídicos sobre terceiros (clientes dos Profissionais). A IA limita-se a estruturar e formatar a informação fornecida pelo próprio Profissional, sem proceder a qualquer avaliação, perfil, pontuação ou decisão sobre pessoas singulares.</p>
+
+      <h3>6.3 Supervisão Humana</h3>
+      <p>O Profissional mantém em permanência o controlo sobre o conteúdo do orçamento. A IA funciona como ferramenta de apoio à formatação — o Profissional define todos os elementos relevantes (serviços, quantidades, preços) e tem sempre a possibilidade de rejeitar, corrigir ou não utilizar o PDF gerado.</p>
+
+      <h3>6.4 Limitações do Sistema</h3>
+      <p>O Profissional reconhece que:</p>
+      <ul>
+        <li>A transcrição automática de áudio pode conter erros, em especial em presença de sotaques, ruído de fundo, terminologia técnica ou dicção pouco clara;</li>
+        <li>A interpretação por linguagem natural pode, em casos excecionais, interpretar incorretamente elementos do orçamento;</li>
+        <li>É da responsabilidade do Profissional verificar o PDF gerado antes de o enviar ao cliente;</li>
+        <li>O Orçamentos Express não pode ser responsabilizado por erros no orçamento resultantes de interpretação incorreta de mensagens ambíguas, incompletas ou de difícil compreensão.</li>
+      </ul>
+
+      <h3>6.5 Classificação de Risco ao Abrigo do AI Act</h3>
+      <p>O sistema de IA do Orçamentos Express é classificado como <strong>sistema de risco mínimo/limitado</strong>, dado que: não se enquadra em nenhuma das categorias de risco elevado do Anexo III do Regulamento IA; não produz efeitos jurídicos sobre terceiros; não é utilizado em domínios sensíveis; e o Profissional mantém supervisão e controlo humano completo sobre todos os outputs.</p>
+      <p>O Orçamentos Express cumpre, não obstante, os princípios gerais de transparência, responsabilidade e supervisão humana previstos no Regulamento IA, e adota boas práticas na utilização responsável dos modelos de IA de terceiros.</p>
+
+      <h2>7. Preços, Pagamento e Subscrição</h2>
+
+      <h3>7.1 Modelo de Preços</h3>
+      <p>O acesso ao serviço está sujeito ao pagamento de uma subscrição periódica, cujos valores e condições são comunicados ao Profissional no momento do registo ou através da página do serviço.</p>
+
+      <h3>7.2 Pagamentos</h3>
+      <p>Na fase atual, os pagamentos são geridos manualmente pela titular do serviço. O Profissional receberá instruções de pagamento após o registo. Não existe atualmente nenhum processador de pagamentos automático integrado.</p>
+
+      <h3>7.3 Validade do Acesso</h3>
+      <p>O acesso ao bot do Telegram é ativado após confirmação do pagamento pela titular. A não renovação atempada da subscrição poderá implicar a suspensão do acesso.</p>
+
+      <h3>7.4 Reembolsos</h3>
+      <p>Tendo em conta a natureza do serviço e o custo operacional associado ao processamento de IA por pedido, não são admitidos reembolsos por utilizações já efetuadas. Em caso de falha técnica imputável ao serviço, será analisada a situação caso a caso.</p>
+
+      <h2>8. Disponibilidade e Manutenção</h2>
+
+      <h3>8.1 Disponibilidade</h3>
+      <p>O Orçamentos Express não garante uma disponibilidade ininterrupta do serviço. O serviço depende da disponibilidade de plataformas de terceiros (Telegram, Groq, Make.com, Google Workspace), sobre as quais a titular não tem controlo direto.</p>
+
+      <h3>8.2 Manutenção</h3>
+      <p>A titular poderá proceder a operações de manutenção, atualização ou suspensão temporária do serviço, sempre que possível com aviso prévio ao Profissional.</p>
+
+      <h3>8.3 Limitação de Responsabilidade</h3>
+      <p>A titular não será responsável por danos decorrentes de interrupções, falhas ou indisponibilidade do serviço, nomeadamente quando imputáveis a causas de força maior, falhas de terceiros ou problemas de conectividade.</p>
+
+      <h2>9. Propriedade Intelectual</h2>
+
+      <h3>9.1 Titularidade</h3>
+      <p>Todos os direitos de propriedade intelectual sobre o serviço, incluindo o nome «Orçamentos Express», o logótipo, os templates de orçamento, o código desenvolvido, os fluxos de automação e a identidade visual, pertencem exclusivamente à titular.</p>
+
+      <h3>9.2 Licença de Utilização</h3>
+      <p>O Profissional recebe uma licença de utilização pessoal, intransmissível e não exclusiva do serviço, limitada à sua atividade profissional, pelo período de vigência da sua subscrição.</p>
+
+      <h3>9.3 Conteúdo do Profissional</h3>
+      <p>Os dados e o conteúdo fornecidos pelo Profissional (perfil, logótipo, descrições) permanecem da sua titularidade. O Profissional concede ao Orçamentos Express uma licença limitada de utilização desses dados, estritamente para a prestação do serviço.</p>
+
+      <h2>10. Confidencialidade e Segurança</h2>
+
+      <h3>10.1 Confidencialidade</h3>
+      <p>A titular compromete-se a tratar como confidenciais todos os dados e informações do Profissional, não os divulgando a terceiros exceto nos casos previstos na Política de Privacidade ou exigidos por lei.</p>
+
+      <h3>10.2 Medidas de Segurança</h3>
+      <p>A titular implementa medidas técnicas e organizativas adequadas para proteger os dados pessoais e operacionais dos Profissionais, nomeadamente controlos de acesso, transmissão por canais seguros (HTTPS/TLS) e armazenamento restrito a serviços com certificações de segurança adequadas.</p>
+
+      <h2>11. Modificação do Serviço e dos Termos</h2>
+
+      <h3>11.1 Alterações ao Serviço</h3>
+      <p>A titular reserva-se o direito de modificar, suspender ou descontinuar qualquer aspeto do serviço, mediante aviso prévio razoável ao Profissional.</p>
+
+      <h3>11.2 Alterações aos Termos</h3>
+      <p>Os presentes Termos poderão ser atualizados. O Profissional será notificado de alterações materiais com antecedência mínima de 30 dias. A continuação da utilização do serviço após a entrada em vigor das alterações implica a aceitação dos novos termos.</p>
+
+      <h2>12. Suspensão e Rescisão</h2>
+
+      <h3>12.1 Por Iniciativa da Titular</h3>
+      <p>A titular pode suspender ou rescindir o acesso do Profissional, com ou sem aviso prévio, nos seguintes casos: violação dos presentes Termos; utilização do serviço para fins ilegais ou fraudulentos; falta de pagamento; qualquer comportamento que coloque em causa a segurança, integridade ou reputação do serviço.</p>
+
+      <h3>12.2 Por Iniciativa do Profissional</h3>
+      <p>O Profissional pode cancelar a sua conta a qualquer momento, através de pedido enviado por email para o endereço de contacto. O cancelamento implica a cessação do acesso e, nos termos da Política de Privacidade, o tratamento dos dados nos prazos legalmente previstos.</p>
+
+      <h2>13. Responsabilidade</h2>
+
+      <h3>13.1 Limitação de Responsabilidade</h3>
+      <p>Na máxima extensão permitida pela lei aplicável, a titular não será responsável por danos indiretos, lucros cessantes, perda de dados ou danos decorrentes da utilização ou impossibilidade de utilização do serviço.</p>
+
+      <h3>13.2 Responsabilidade do Profissional</h3>
+      <p>O Profissional responde pelos danos causados à titular, a terceiros ou a clientes resultantes da utilização indevida do serviço, da transmissão de dados incorretos, ou do envio de documentos com erros sem verificação prévia.</p>
+
+      <h3>13.3 Relação com Terceiros</h3>
+      <p>O Orçamentos Express não é parte na relação contratual entre o Profissional e os seus clientes. Os orçamentos gerados constituem documentos do Profissional, e a responsabilidade pelo seu conteúdo e efeitos é exclusivamente do Profissional.</p>
+
+      <h2>14. Proteção de Dados</h2>
+      <p>O tratamento de dados pessoais no âmbito do serviço é regulado pela <a href="privacidade.html"><strong>Política de Privacidade</strong></a> do Orçamentos Express, que constitui parte integrante destes Termos e Condições.</p>
+
+      <h2>15. Resolução de Litígios e Lei Aplicável</h2>
+
+      <h3>15.1 Lei Aplicável</h3>
+      <p>Os presentes Termos são regidos pelo direito português e pelo direito da União Europeia aplicável.</p>
+
+      <h3>15.2 Resolução de Litígios</h3>
+      <p>Em caso de litígio decorrente da interpretação ou execução dos presentes Termos, as partes comprometem-se a procurar, em primeiro lugar, uma solução amigável. Na ausência de acordo, será competente o tribunal da comarca de Matosinhos, sem prejuízo de recurso a mecanismos de resolução alternativa de litígios, nomeadamente junto da CNIACC ou do Centro de Arbitragem de Conflitos de Consumo.</p>
+
+      <h2>16. Disposições Finais</h2>
+
+      <h3>16.1 Integralidade</h3>
+      <p>Os presentes Termos, juntamente com a Política de Privacidade, constituem o acordo integral entre as partes relativamente ao serviço, substituindo quaisquer entendimentos anteriores.</p>
+
+      <h3>16.2 Nulidade Parcial</h3>
+      <p>A invalidade ou ineficácia de qualquer disposição dos presentes Termos não afeta a validade das restantes.</p>
+
+      <h3>16.3 Renúncia</h3>
+      <p>O não exercício pela titular de qualquer direito previsto nos presentes Termos não constitui renúncia a esse direito.</p>
+
+      <div class="doc-footer">
+        <p>Orçamentos Express — Termos e Condições v1.0 · © 2026 Ana Rita. Todos os direitos reservados.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Orçamentos<span>Express</span></div>
+    <p>
+      <a href="index.html">Início</a> · <a href="termos.html">Termos e Condições</a> · <a href="privacidade.html">Política de Privacidade</a><br><br>
+      © 2026 Orçamentos Express · Ana Rita · NIF 220000000
+    </p>
+  </footer>
+
+</body>
+</html>
