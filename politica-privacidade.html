@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade — Orçamentos Express</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #940580;
+      --primary-light: #bf07a6;
+      --bg: #f7f4f2;
+      --bg2: #eeeae6;
+      --dark: #0f0a0e;
+      --text: #1a0e18;
+      --text-muted: #7a6878;
+      --border: rgba(148, 5, 128, 0.12);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Instrument Sans', sans-serif; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 40px; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(247,244,242,0.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-icon {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px;
+    }
+    .nav-logo-text { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 17px; color: var(--text); }
+    .nav-logo-text span { color: var(--primary); }
+    .nav-back { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-back:hover { color: var(--primary); }
+
+    .container { max-width: 780px; margin: 0 auto; padding: 100px 24px 80px; }
+
+    .doc-header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--bg2); }
+    .doc-badge {
+      display: inline-block; background: rgba(148,5,128,0.1); color: var(--primary);
+      border-radius: 99px; padding: 5px 14px; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.5px; margin-bottom: 16px;
+    }
+    .doc-title {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+      font-size: clamp(28px, 5vw, 42px); letter-spacing: -1px; line-height: 1.1; margin-bottom: 12px;
+    }
+    .doc-meta { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    .doc-body h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 16px;
+      letter-spacing: 0.5px; text-transform: uppercase; color: var(--primary);
+      margin: 48px 0 16px; padding-top: 24px; border-top: 2px solid var(--bg2);
+    }
+    .doc-body h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      font-size: 16px; margin: 24px 0 10px; color: var(--text); letter-spacing: -0.2px;
+    }
+    .doc-body p { font-size: 15px; line-height: 1.75; color: #3a2a38; margin-bottom: 12px; }
+    .doc-body ul, .doc-body ol { padding-left: 22px; margin-bottom: 14px; }
+    .doc-body ul li, .doc-body ol li { font-size: 15px; line-height: 1.75; color: #3a2a38; margin-bottom: 6px; }
+    .doc-body a { color: var(--primary); text-decoration: none; }
+    .doc-body a:hover { text-decoration: underline; }
+    .doc-body strong { color: var(--text); font-weight: 600; }
+
+    .identity-box {
+      background: rgba(148,5,128,0.06); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 24px; margin: 16px 0 20px;
+      font-size: 15px; line-height: 2; color: #3a2a38;
+    }
+
+    .cnpd-box {
+      background: var(--bg2); border-radius: 12px; padding: 20px 24px; margin: 12px 0 20px;
+      font-size: 14px; color: var(--text-muted); line-height: 1.9;
+    }
+    .cnpd-box strong { color: var(--text); display: block; margin-bottom: 4px; font-size: 15px; }
+
+    .table-wrapper { overflow-x: auto; margin: 16px 0 20px; border-radius: 12px; border: 1px solid var(--bg2); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th { background: rgba(148,5,128,0.06); color: var(--text); font-weight: 600; text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--bg2); }
+    td { padding: 12px 16px; border-bottom: 1px solid var(--bg2); color: #3a2a38; vertical-align: top; line-height: 1.6; }
+    tr:last-child td { border-bottom: none; }
+
+    .doc-footer {
+      margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--bg2);
+      font-size: 13px; color: var(--text-muted); font-style: italic;
+    }
+
+    footer { background: var(--dark); color: rgba(255,255,255,0.35); padding: 44px 24px; text-align: center; }
+    .footer-logo { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 19px; color: white; margin-bottom: 14px; }
+    .footer-logo span { color: var(--primary-light); }
+    footer p { font-size: 13px; line-height: 1.9; }
+    footer a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--primary-light); }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 18px; }
+      .container { padding: 80px 18px 60px; }
+      th, td { padding: 10px 12px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">⚡</div>
+      <div class="nav-logo-text">Orçamentos<span>Express</span></div>
+    </a>
+    <a href="index.html" class="nav-back">← Voltar</a>
+  </nav>
+
+  <div class="container">
+    <div class="doc-header">
+      <div class="doc-badge">DOCUMENTO LEGAL</div>
+      <h1 class="doc-title">Política de Privacidade</h1>
+      <p class="doc-meta">
+        <strong>Versão:</strong> 1.0 &nbsp;·&nbsp;
+        <strong>Data de entrada em vigor:</strong> [DATA] &nbsp;·&nbsp;
+        <strong>Última atualização:</strong> [DATA]
+      </p>
+    </div>
+
+    <div class="doc-body">
+
+      <h2>1. Identidade e Contactos do Responsável pelo Tratamento</h2>
+      <p>Nos termos do artigo 13.º, n.º 1, alínea a), do Regulamento (UE) 2016/679 do Parlamento Europeu e do Conselho, de 27 de abril de 2016 (doravante «RGPD»), informamos que o responsável pelo tratamento dos seus dados pessoais é:</p>
+      <div class="identity-box">
+        <strong>Nome:</strong> Ana Rita [apelido a completar]<br>
+        <strong>NIF:</strong> 220 000 000<br>
+        <strong>Morada:</strong> Rua José Joaquim, 4455-000 Matosinhos, Portugal<br>
+        <strong>Email:</strong> <a href="mailto:O_TEU_EMAIL">O_TEU_EMAIL</a><br>
+        <strong>Plataforma:</strong> Orçamentos Express
+      </div>
+      <p>O responsável pelo tratamento é uma pessoa singular que exerce atividade de prestação de serviços de tecnologia e automação a profissionais independentes, sem designação formal de Encarregado de Proteção de Dados (EPD/DPO), uma vez que a dimensão e natureza do tratamento não o exigem nos termos do artigo 37.º do RGPD.</p>
+      <p>Para qualquer questão relativa ao tratamento dos seus dados pessoais, contacte: <a href="mailto:O_TEU_EMAIL">O_TEU_EMAIL</a>.</p>
+
+      <h2>2. Âmbito de Aplicação</h2>
+      <p>A presente Política de Privacidade aplica-se a todos os dados pessoais tratados no âmbito da prestação do serviço <strong>Orçamentos Express</strong>, incluindo:</p>
+      <ul>
+        <li>Os dados fornecidos pelos <strong>Profissionais</strong> (utilizadores do serviço) no momento do registo;</li>
+        <li>Os dados gerados no contexto operacional da utilização do serviço (mensagens, identificadores Telegram);</li>
+        <li>Os dados de terceiros (clientes dos Profissionais) mencionados de forma efémera nas mensagens para fins de geração do orçamento.</li>
+      </ul>
+      <p>A presente política não se aplica a sítios web, serviços ou plataformas de terceiros referenciados ou utilizados como infraestrutura pelo serviço.</p>
+
+      <h2>3. Dados Pessoais Tratados, Finalidades e Fundamentos Jurídicos</h2>
+
+      <h3>3.1 Dados do Profissional — Perfil e Conta</h3>
+      <p><strong>Categorias de dados:</strong> nome completo ou denominação comercial; NIF; morada; telefone; email; website (facultativo); IBAN; taxa de IVA; prazo de validade dos orçamentos; condições de pagamento e notas de rodapé; logótipo (imagem).</p>
+      <p><strong>Finalidades:</strong> criação e gestão da conta; personalização e inclusão nos PDFs gerados; validação do acesso ao serviço; comunicações relativas ao serviço.</p>
+      <p><strong>Fundamento jurídico:</strong> Artigo 6.º, n.º 1, alínea b), do RGPD — execução de um contrato de prestação de serviços. Em relação a dados facultativos (website, logótipo), artigo 6.º, n.º 1, alínea a) — consentimento.</p>
+      <p><strong>Período de conservação:</strong> Enquanto a conta se mantiver ativa. Após cancelamento, os dados são conservados pelo prazo mínimo legalmente exigível (10 anos para documentos com relevância fiscal/contabilística), findo o qual serão eliminados ou anonimizados.</p>
+
+      <h3>3.2 Dados Operacionais — Utilização do Bot</h3>
+      <p><strong>Categorias de dados:</strong> identificador Telegram (chat ID); número de telefone; conteúdo das mensagens de texto; ficheiros de áudio.</p>
+      <p><strong>Finalidades:</strong> autenticação e controlo de acesso; processamento das instruções para geração do orçamento em PDF; garantir o correto funcionamento do fluxo automatizado.</p>
+      <p><strong>Fundamento jurídico:</strong> Artigo 6.º, n.º 1, alínea b), do RGPD — execução do contrato de prestação de serviços.</p>
+      <p><strong>Período de conservação:</strong> As mensagens de texto e áudio são processadas em tempo real e eliminadas após a geração do PDF. Não são armazenadas de forma persistente. Os identificadores Telegram e número de telefone são conservados enquanto a conta se mantiver ativa.</p>
+
+      <h3>3.3 Dados de Terceiros (Clientes dos Profissionais)</h3>
+      <p><strong>Categorias de dados:</strong> nome do cliente final; morada; quaisquer outros dados mencionados pelo Profissional na descrição do orçamento.</p>
+      <p><strong>Finalidades:</strong> inclusão no documento PDF do orçamento gerado, exclusivamente para a elaboração desse orçamento.</p>
+      <p><strong>Fundamento jurídico:</strong> Artigo 6.º, n.º 1, alínea f), do RGPD — interesses legítimos, sendo o impacto sobre os titulares mínimo dado o caráter efémero do tratamento.</p>
+      <p><strong>Natureza do tratamento:</strong> Efémero e não persistente. Os dados dos clientes são utilizados apenas durante o processo de geração do PDF e não são armazenados em nenhuma base de dados do serviço após a conclusão do processo.</p>
+      <p>O Profissional, ao mencionar dados de terceiros nas mensagens, assume a responsabilidade de o fazer de acordo com a legislação de proteção de dados aplicável à sua atividade.</p>
+
+      <h3>3.4 Dados de Pagamento</h3>
+      <p>Na fase atual do serviço, os pagamentos são geridos manualmente, sem integração de qualquer processador de pagamentos. Os dados de pagamento eventualmente partilhados são tratados de forma estritamente confidencial e não são armazenados em sistemas automatizados.</p>
+
+      <h2>4. Transferências de Dados para Países Terceiros</h2>
+      <p>O serviço recorre a fornecedores cuja infraestrutura pode estar localizada fora do Espaço Económico Europeu (EEE):</p>
+
+      <h3>4.1 Groq, Inc.</h3>
+      <p>Transcrição de áudio (Whisper) e processamento de linguagem natural (LLaMA 3.3 70B). Localização: EUA. Dados transferidos: conteúdo das mensagens de texto e áudio. Garantias: EU-US Data Privacy Framework ou Cláusulas Contratuais Tipo (art. 46.º, n.º 2, al. c), RGPD).</p>
+
+      <h3>4.2 Make.com (Integromat/Celonis)</h3>
+      <p>Automação de fluxos e webhooks. Localização: UE, com possibilidade de transferências para EUA. Dados transferidos: dados do perfil e conteúdo das mensagens no âmbito do fluxo de automação. Garantias: Cláusulas Contratuais Tipo ou EU-US Data Privacy Framework.</p>
+
+      <h3>4.3 Google LLC (Google Workspace)</h3>
+      <p>Google Apps Script, Sheets, Drive e Docs. Localização: infraestrutura global com centros de dados na UE e países terceiros. Dados transferidos: perfil, tokens de acesso, PDFs gerados, logótipos. Garantias: EU-US Data Privacy Framework e Cláusulas Contratuais Tipo. Sujeito ao DPA da Google Workspace.</p>
+
+      <h3>4.4 Telegram Messenger / Telegram FZ LLC</h3>
+      <p>Plataforma de mensagens e Bot API. Localização: Emirados Árabes Unidos (sede), infraestrutura distribuída. Dados transferidos: mensagens de texto e áudio, identificadores de utilizador. O Profissional aceita esta condição ao utilizar o serviço, que depende estruturalmente da plataforma Telegram.</p>
+
+      <h3>4.5 GitHub, Inc. (GitHub Pages)</h3>
+      <p>Alojamento estático da landing page e formulário de registo. Localização: EUA. Dados transferidos: apenas dados de navegação (endereço IP, dados de sessão). Garantias: EU-US Data Privacy Framework (Microsoft/GitHub).</p>
+
+      <h2>5. Subcontratantes (Processadores de Dados)</h2>
+      <p>Os fornecedores referidos na secção 4 atuam como <strong>subcontratantes</strong> do responsável pelo tratamento, nos termos do artigo 28.º do RGPD, tratando os dados pessoais apenas para as finalidades indicadas e sob instrução do responsável pelo tratamento. Os contratos com subcontratantes incluem as cláusulas obrigatórias previstas no artigo 28.º, n.º 3, do RGPD.</p>
+
+      <h2>6. Inteligência Artificial — Informação Específica</h2>
+
+      <h3>6.1 Transparência sobre a utilização de IA</h3>
+      <p>Em cumprimento do artigo 50.º do Regulamento (UE) 2024/1689 (AI Act) e dos princípios de transparência do artigo 5.º do RGPD, o Orçamentos Express informa que:</p>
+      <ul>
+        <li>As mensagens de texto são processadas por um <strong>modelo de linguagem de grande escala</strong> (LLM — LLaMA 3.3 70B, Groq) para extração automática de dados estruturados (cliente, serviços, quantidades, preços, observações);</li>
+        <li>As mensagens de áudio são processadas por um <strong>modelo de transcrição automática</strong> (Whisper, Groq) para conversão em texto, sendo depois tratadas como descrito acima;</li>
+        <li>Estes sistemas processam o conteúdo exclusivamente para gerar o PDF do orçamento, não sendo utilizados para definição de perfis, avaliação comportamental, tomada de decisões com efeitos jurídicos, nem para qualquer outra finalidade;</li>
+        <li>O Profissional tem sempre controlo humano sobre o resultado — pode verificar, corrigir e decidir não utilizar o PDF gerado.</li>
+      </ul>
+
+      <h3>6.2 Ausência de Decisões Automatizadas Relevantes</h3>
+      <p>O tratamento realizado pelo sistema de IA não inclui decisões automatizadas que produzam efeitos na esfera jurídica do Profissional ou de terceiros, nos termos do artigo 22.º do RGPD. A IA não avalia, classifica, pontua nem cria perfis de nenhuma pessoa singular.</p>
+
+      <h3>6.3 Lógica e Impacto do Processamento por IA</h3>
+      <p>O modelo de IA recebe o texto da mensagem e identifica os campos do orçamento (nome do cliente, endereço, itens, quantidades, preços, total, observações), preenchendo um template pré-definido para geração do PDF. O impacto limita-se à qualidade do documento gerado, que o Profissional pode verificar e corrigir antes de utilizar.</p>
+
+      <h2>7. Direitos dos Titulares dos Dados</h2>
+      <p>Nos termos dos artigos 15.º a 22.º do RGPD, o Profissional tem os seguintes direitos relativamente aos seus dados pessoais:</p>
+
+      <h3>7.1 Direito de Acesso (art. 15.º RGPD)</h3>
+      <p>Obter confirmação sobre se os seus dados estão a ser tratados e aceder a esses dados e às informações previstas no artigo 15.º, n.º 1, do RGPD.</p>
+
+      <h3>7.2 Direito de Retificação (art. 16.º RGPD)</h3>
+      <p>Solicitar a correção de dados inexatos ou incompletos. Para dados do perfil, a retificação pode ser feita diretamente através do formulário de atualização de perfil.</p>
+
+      <h3>7.3 Direito ao Apagamento / «Direito a Ser Esquecido» (art. 17.º RGPD)</h3>
+      <p>Solicitar o apagamento dos seus dados pessoais, nos casos previstos no artigo 17.º, n.º 1, do RGPD. O responsável pelo tratamento procederá ao apagamento no prazo de 30 dias, salvo quando a conservação seja exigida por lei.</p>
+
+      <h3>7.4 Direito à Limitação do Tratamento (art. 18.º RGPD)</h3>
+      <p>Solicitar a limitação do tratamento dos seus dados em determinadas circunstâncias previstas no artigo 18.º do RGPD.</p>
+
+      <h3>7.5 Direito à Portabilidade dos Dados (art. 20.º RGPD)</h3>
+      <p>Receber os dados pessoais fornecidos num formato estruturado, de uso corrente e leitura automática (por exemplo, JSON ou CSV), quando o tratamento se basear em consentimento ou contrato e for realizado por meios automatizados.</p>
+
+      <h3>7.6 Direito de Oposição (art. 21.º RGPD)</h3>
+      <p>Opor-se ao tratamento dos seus dados pessoais com base em interesses legítimos (artigo 6.º, n.º 1, alínea f), do RGPD), por motivos relacionados com a sua situação particular.</p>
+
+      <h3>7.7 Direito de Retirar o Consentimento (art. 7.º, n.º 3, RGPD)</h3>
+      <p>Para os tratamentos baseados em consentimento (dados facultativos do perfil), o Profissional pode retirar o consentimento a qualquer momento, sem que tal comprometa a licitude do tratamento anterior.</p>
+
+      <h3>7.8 Exercício dos Direitos</h3>
+      <p>Os direitos podem ser exercidos através de pedido escrito enviado para <a href="mailto:O_TEU_EMAIL">O_TEU_EMAIL</a>. O responsável pelo tratamento responderá no prazo de <strong>um mês</strong>, prorrogável até dois meses em caso de complexidade, nos termos do artigo 12.º, n.º 3, do RGPD. O exercício dos direitos é gratuito.</p>
+
+      <h3>7.9 Direito de Reclamação junto da Autoridade de Controlo</h3>
+      <p>O Profissional tem o direito de apresentar reclamação junto da autoridade de controlo competente, que em Portugal é a:</p>
+      <div class="cnpd-box">
+        <strong>Comissão Nacional de Proteção de Dados (CNPD)</strong>
+        Rua de São Bento, 148-3.º · 1200-821 Lisboa<br>
+        Telefone: +351 213 928 400<br>
+        Email: <a href="mailto:geral@cnpd.pt">geral@cnpd.pt</a><br>
+        Website: <a href="https://www.cnpd.pt" target="_blank">www.cnpd.pt</a>
+      </div>
+
+      <h2>8. Medidas de Segurança</h2>
+      <p>O responsável pelo tratamento adota medidas técnicas e organizativas adequadas (art. 32.º RGPD), incluindo:</p>
+      <ul>
+        <li><strong>Transmissão segura:</strong> toda a comunicação com os sistemas de terceiros utiliza protocolos seguros (HTTPS/TLS);</li>
+        <li><strong>Controlo de acesso:</strong> acesso ao bot restrito ao Profissional através da associação número de telefone / chat ID;</li>
+        <li><strong>Acesso restrito à base de dados:</strong> acesso ao Google Sheets limitado à titular e aos scripts automatizados;</li>
+        <li><strong>Armazenamento temporário de PDFs:</strong> enviados ao Profissional e eliminados após entrega;</li>
+        <li><strong>Não persistência de dados de terceiros:</strong> dados dos clientes dos Profissionais não são armazenados de forma persistente;</li>
+        <li><strong>Revisão periódica:</strong> a titular procede à revisão periódica das medidas de segurança e configurações dos sistemas.</li>
+      </ul>
+      <p>Em caso de violação de dados pessoais que possa implicar risco elevado, o responsável pelo tratamento procederá à notificação nos termos dos artigos 33.º e 34.º do RGPD.</p>
+
+      <h2>9. Cookies e Rastreamento</h2>
+      <p>A landing page e o formulário de registo do Orçamentos Express são alojados em GitHub Pages. Não é utilizado qualquer sistema de analytics, cookies de rastreamento, pixels de publicidade ou ferramentas de segmentação comportamental.</p>
+      <p>O GitHub Pages pode registar automaticamente dados de acesso (endereço IP, browser, hora de acesso) para fins de segurança e funcionamento da infraestrutura, de acordo com a <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank">política de privacidade do GitHub</a>.</p>
+
+      <h2>10. Retenção de Dados — Resumo</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>Categoria de dados</th><th>Período de conservação</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Dados de perfil do Profissional</td><td>Enquanto a conta estiver ativa + mínimo legal pós-cancelamento (até 10 anos para fins fiscais)</td></tr>
+            <tr><td>Identificador Telegram / número de telefone</td><td>Enquanto a conta estiver ativa</td></tr>
+            <tr><td>Mensagens de texto / áudio</td><td>Eliminadas após geração do PDF (não persistentes)</td></tr>
+            <tr><td>Dados de clientes dos Profissionais</td><td>Não armazenados (tratamento efémero)</td></tr>
+            <tr><td>Logótipo</td><td>Enquanto a conta estiver ativa + período de backup</td></tr>
+            <tr><td>PDFs gerados</td><td>Armazenamento temporário até entrega; eliminados após</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>11. Alterações à Política de Privacidade</h2>
+      <p>A presente Política poderá ser atualizada para refletir alterações legais, tecnológicas ou operacionais. O Profissional será notificado de alterações materiais por email com antecedência mínima de 30 dias. A versão atualizada será disponibilizada na página do serviço com a data de revisão indicada.</p>
+
+      <h2>12. Contacto</h2>
+      <p>Para qualquer questão relacionada com o tratamento dos seus dados pessoais, ou para exercer os seus direitos nos termos do RGPD:</p>
+      <div class="identity-box">
+        <strong>Responsável pelo Tratamento:</strong> Ana Rita [apelido]<br>
+        <strong>Email:</strong> <a href="mailto:O_TEU_EMAIL">O_TEU_EMAIL</a><br>
+        <strong>Morada:</strong> Rua José Joaquim, 4455-000 Matosinhos, Portugal
+      </div>
+
+      <div class="doc-footer">
+        <p>Orçamentos Express — Política de Privacidade v1.0 · Elaborada em conformidade com o Regulamento (UE) 2016/679 (RGPD) e o Regulamento (UE) 2024/1689 (AI Act).</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Orçamentos<span>Express</span></div>
+    <p>
+      <a href="index.html">Início</a> · <a href="termos.html">Termos e Condições</a> · <a href="privacidade.html">Política de Privacidade</a><br><br>
+      © 2026 Orçamentos Express · Ana Rita · NIF 220000000
+    </p>
+  </footer>
+
+</body>
+</html>
