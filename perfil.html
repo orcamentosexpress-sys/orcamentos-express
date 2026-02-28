@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orçamentos Express — O teu perfil</title>
+  <title>Orçamentos Express — Perfil</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -510,14 +510,14 @@
     <div class="error-screen" id="errorScreen">
       <div class="error-icon">⏰</div>
       <h2>Link expirado</h2>
-      <p>Este link já não é válido.<br>Envia <strong>/perfil</strong> no Telegram para obteres um novo link.</p>
+      <p>Este link já não é válido.<br>Envie <strong>/perfil</strong> no Telegram para obter um novo link.</p>
     </div>
 
     <!-- Sucesso -->
     <div class="success-screen" id="successScreen">
       <div class="success-icon">✓</div>
       <h2>Perfil guardado!</h2>
-      <p>Os teus dados foram atualizados com sucesso.<br>Já podes voltar ao Telegram e gerar orçamentos.</p>
+      <p>Os seus dados foram atualizados com sucesso.<br>Já pode voltar ao Telegram e gerar orçamentos personalizados.</p>
     </div>
 
     <!-- Formulário -->
@@ -625,7 +625,7 @@
 
           <div class="field">
             <label>Notas de rodapé <span class="optional-badge">opcional</span></label>
-            <textarea name="notas" placeholder="ex: Chamada para rede móvel nacional. Preços incluem IVA à taxa legal em vigor."></textarea>
+            <textarea name="notas" placeholder="ex: Chamada para rede móvel nacional."></textarea>
           </div>
         </div>
 
@@ -639,7 +639,7 @@
               <input type="file" name="logo" id="logoInput" accept="image/*">
               <div id="logoPlaceholder">
                 <div class="logo-upload-icon">🖼️</div>
-                <p>Clica para enviar o teu logo</p>
+                <p>Clique para enviar o seu logo</p>
                 <small>PNG, JPG ou SVG — máx. 2MB</small>
               </div>
               <img id="logoPreview" class="logo-preview" alt="Logo preview">
@@ -652,8 +652,8 @@
           <div class="spinner" id="submitSpinner"></div>
         </button>
 
-        <div class="msg success" id="msgSuccess">✅ Perfil guardado com sucesso! Podes fechar esta página e voltar ao Telegram.</div>
-        <div class="msg error" id="msgError">❌ Ocorreu um erro. Tenta novamente.</div>
+        <div class="msg success" id="msgSuccess">✅ Perfil guardado com sucesso! Pode fechar esta página e voltar ao Telegram.</div>
+        <div class="msg error" id="msgError">❌ Ocorreu um erro. Tente novamente.</div>
 
       </form>
     </div>
