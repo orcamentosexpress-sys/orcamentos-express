@@ -296,7 +296,7 @@
     <p class="hero-sub">Envie uma mensagem de texto ou áudio pelo Telegram e receba o orçamento em PDF pronto a enviar ao cliente. Sem formulários, sem computador.</p>
     <div class="hero-actions">
       <a href="#preco" class="btn-primary">⚡ Quero experimentar</a>
-      <a href="#como-funciona" class="btn-secondary">Ver como funciona →</a>
+      <!--<a href="#como-funciona" class="btn-secondary">Ver como funciona →</a>-->
     </div>
     <p class="price-note">Só <strong>49€/ano</strong></p>
   </section>
@@ -388,7 +388,9 @@
         <li><span class="check">✓</span> Configuração em menos de 5 minutos</li>
         <li><span class="check">✓</span> Suporte por e-mail</li>
       </ul>
-      <a href="mailto:O_TEU_EMAIL?subject=Quero%20o%20Or%C3%A7amentos%20Express&body=Ol%C3%A1%2C%20tenho%20interesse%20no%20Or%C3%A7amentos%20Express." class="btn-full">⚡ Quero começar agora</a>
+      <button class="btn-primary" onclick="abrirFormulario()">
+        Quero começar →
+      </button>      
       <p class="pricing-guarantee">🔒 Pagamento seguro · Suporte incluído</p>
     </div>
   </section>
@@ -443,6 +445,299 @@
       });
     });
   </script>
+
+  <!--
+  FORMULÁRIO DE INTERESSE — Orçamentos Express
+  ─────────────────────────────────────────────
+  Como usar:
+  1. Substitui o botão "Quero começar" existente por este bloco
+  2. Cola o CSS no bloco <style> existente
+  3. Cola o JS antes do </body>
+  4. Substitui O_TEU_EMAIL pelo teu email real
+
+  O formulário envia os dados por mailto (abre cliente de email)
+  e também por fetch para Formspree (gratuito, até 50 submissões/mês)
+  para garantir que recebes mesmo que o mailto falhe.
+  Regista em https://formspree.io e substitui FORMSPREE_ID pelo teu ID.
+-->
+
+<!-- ═══════════════════════════════════════════════
+     BOTÃO — substitui o btn-primary existente
+═══════════════════════════════════════════════ -->
+<button class="btn-primary" onclick="abrirFormulario()">
+  Quero começar →
+</button>
+
+
+<!-- ═══════════════════════════════════════════════
+     MODAL
+═══════════════════════════════════════════════ -->
+<div id="modal-interesse" class="modal-overlay" onclick="fecharSeOverlay(event)">
+  <div class="modal-box">
+
+    <button class="modal-close" onclick="fecharFormulario()" aria-label="Fechar">✕</button>
+
+    <div id="modal-conteudo">
+      <div class="modal-icon">📋</div>
+      <h2 class="modal-titulo">Quero experimentar</h2>
+      <p class="modal-sub">Deixa os teus contactos e entramos em contacto contigo para ativares o acesso.</p>
+
+      <form id="form-interesse" onsubmit="submeterFormulario(event)" novalidate>
+
+        <div class="form-group">
+          <label for="fi-nome">Nome</label>
+          <input type="text" id="fi-nome" name="nome" placeholder="O teu nome" required autocomplete="name">
+          <span class="form-erro" id="erro-nome"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="fi-email">Email</label>
+          <input type="email" id="fi-email" name="email" placeholder="o.teu@email.com" required autocomplete="email">
+          <span class="form-erro" id="erro-email"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="fi-tel">Telemóvel</label>
+          <input type="tel" id="fi-tel" name="telefone" placeholder="9XX XXX XXX" required autocomplete="tel">
+          <span class="form-erro" id="erro-tel"></span>
+        </div>
+
+        <button type="submit" class="btn-submit" id="btn-submit">
+          <span id="btn-texto">Enviar</span>
+        </button>
+
+        <p class="form-legal">Os teus dados são usados apenas para te contactarmos. Não partilhamos com terceiros.</p>
+
+      </form>
+    </div>
+
+    <div id="modal-sucesso" style="display:none">
+      <div class="sucesso-icon">✅</div>
+      <h2 class="modal-titulo">Recebemos o teu pedido!</h2>
+      <p class="modal-sub">Vamos entrar em contacto contigo em breve para ativares o acesso ao Orçamentos Express.</p>
+      <button class="btn-submit" onclick="fecharFormulario()" style="margin-top:24px">Fechar</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CSS — cola dentro do <style> existente
+═══════════════════════════════════════════════ -->
+<style>
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(15, 10, 14, 0.72);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.modal-overlay.aberto {
+  opacity: 1; pointer-events: all;
+}
+.modal-box {
+  background: var(--bg);
+  border-radius: 24px;
+  padding: 44px 40px;
+  width: 100%; max-width: 440px;
+  position: relative;
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.28);
+}
+.modal-overlay.aberto .modal-box {
+  transform: translateY(0) scale(1);
+}
+.modal-close {
+  position: absolute; top: 18px; right: 20px;
+  background: none; border: none; font-size: 18px;
+  color: var(--text-muted); cursor: pointer; line-height: 1;
+  width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+  border-radius: 8px; transition: all 0.15s;
+}
+.modal-close:hover { background: var(--bg2); color: var(--text); }
+
+.modal-icon { font-size: 36px; margin-bottom: 16px; }
+.modal-titulo {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 24px; font-weight: 800; letter-spacing: -0.5px;
+  margin-bottom: 10px; color: var(--text);
+}
+.modal-sub {
+  font-size: 15px; color: var(--text-muted); line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+/* FORM */
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block; font-size: 13px; font-weight: 600;
+  color: var(--text); margin-bottom: 7px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.form-group input {
+  width: 100%; padding: 13px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px; font-size: 15px;
+  font-family: 'Instrument Sans', sans-serif;
+  background: white; color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.form-group input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(148,5,128,0.1);
+}
+.form-group input.erro { border-color: #e53e3e; }
+.form-erro {
+  display: block; font-size: 12px; color: #e53e3e;
+  margin-top: 5px; min-height: 16px;
+}
+
+.btn-submit {
+  width: 100%; padding: 15px;
+  background: var(--primary); color: white; border: none;
+  border-radius: 12px; font-size: 16px; font-weight: 700;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  cursor: pointer; margin-top: 8px;
+  transition: all 0.2s;
+  box-shadow: 0 6px 20px rgba(148,5,128,0.28);
+}
+.btn-submit:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.form-legal {
+  font-size: 11.5px; color: var(--text-muted);
+  text-align: center; margin-top: 14px; line-height: 1.5;
+}
+
+/* SUCESSO */
+.sucesso-icon { font-size: 48px; margin-bottom: 16px; }
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .modal-box { padding: 36px 24px; }
+  .modal-titulo { font-size: 21px; }
+}
+</style>
+
+
+<!-- ═══════════════════════════════════════════════
+     JS — cola antes do </body>
+═══════════════════════════════════════════════ -->
+<script>
+const FORMSPREE_ID = "FORMSPREE_ID"; // substitui pelo teu ID do Formspree
+const MEU_EMAIL    = "O_TEU_EMAIL";   // substitui pelo teu email
+
+function abrirFormulario() {
+  document.getElementById("modal-interesse").classList.add("aberto");
+  document.body.style.overflow = "hidden";
+  setTimeout(() => document.getElementById("fi-nome").focus(), 300);
+}
+
+function fecharFormulario() {
+  document.getElementById("modal-interesse").classList.remove("aberto");
+  document.body.style.overflow = "";
+}
+
+function fecharSeOverlay(e) {
+  if (e.target === document.getElementById("modal-interesse")) fecharFormulario();
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") fecharFormulario();
+});
+
+function validar() {
+  let valido = true;
+  const nome  = document.getElementById("fi-nome");
+  const email = document.getElementById("fi-email");
+  const tel   = document.getElementById("fi-tel");
+
+  // Reset
+  [nome, email, tel].forEach(function(el) {
+    el.classList.remove("erro");
+  });
+  ["erro-nome","erro-email","erro-tel"].forEach(function(id) {
+    document.getElementById(id).textContent = "";
+  });
+
+  if (!nome.value.trim()) {
+    nome.classList.add("erro");
+    document.getElementById("erro-nome").textContent = "Nome obrigatório";
+    valido = false;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email.value.trim() || !emailRegex.test(email.value)) {
+    email.classList.add("erro");
+    document.getElementById("erro-email").textContent = "Email inválido";
+    valido = false;
+  }
+
+  const telLimpo = tel.value.replace(/\s/g, "");
+  if (!telLimpo || !/^[0-9+]{9,15}$/.test(telLimpo)) {
+    tel.classList.add("erro");
+    document.getElementById("erro-tel").textContent = "Telemóvel inválido";
+    valido = false;
+  }
+
+  return valido;
+}
+
+async function submeterFormulario(e) {
+  e.preventDefault();
+  if (!validar()) return;
+
+  const btn   = document.getElementById("btn-submit");
+  const texto = document.getElementById("btn-texto");
+  btn.disabled = true;
+  texto.textContent = "A enviar...";
+
+  const nome     = document.getElementById("fi-nome").value.trim();
+  const email    = document.getElementById("fi-email").value.trim();
+  const telefone = document.getElementById("fi-tel").value.trim();
+
+  let enviado = false;
+
+  // Tenta Formspree primeiro
+  if (FORMSPREE_ID !== "FORMSPREE_ID") {
+    try {
+      const res = await fetch("https://formspree.io/f/" + FORMSPREE_ID, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({ nome, email, telefone,
+          _subject: "Novo interesse — Orçamentos Express" })
+      });
+      if (res.ok) enviado = true;
+    } catch(err) {}
+  }
+
+  // Fallback mailto
+  if (!enviado) {
+    const assunto = encodeURIComponent("Novo interesse — Orçamentos Express");
+    const corpo   = encodeURIComponent(
+      "Nome: " + nome + "\nEmail: " + email + "\nTelemóvel: " + telefone
+    );
+    window.location.href = "mailto:" + MEU_EMAIL +
+      "?subject=" + assunto + "&body=" + corpo;
+    enviado = true;
+  }
+
+  if (enviado) {
+    document.getElementById("modal-conteudo").style.display = "none";
+    document.getElementById("modal-sucesso").style.display  = "block";
+  } else {
+    btn.disabled = false;
+    texto.textContent = "Enviar";
+    alert("Ocorreu um erro. Tenta novamente ou contacta-nos diretamente.");
+  }
+}
+</script>
 
 </body>
 </html>
