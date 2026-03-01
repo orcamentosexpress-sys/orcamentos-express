@@ -502,7 +502,7 @@
   <!-- Loading -->
   <div class="loading-screen" id="loadingScreen">
     <div class="spinner"></div>
-    <p>A carregar o teu perfil...</p>
+    <p>A carregar o seu perfil...</p>
   </div>
 
   <!-- Token inválido -->
@@ -527,8 +527,8 @@
           <div class="logo-icon">⚡</div>
           <div class="logo-text">Orçamentos<span>Express</span></div>
         </div>
-        <h1>O teu perfil</h1>
-        <p class="subtitle">Preenche os teus dados para personalizar os orçamentos que envias aos clientes.</p>
+        <h1>O seu perfil</h1>
+        <p class="subtitle">Preenche os seus dados para personalizar os orçamentos.</p>
       </div>
 
       <div class="progress-bar">
@@ -797,11 +797,11 @@
       const taxaIva = document.getElementById("taxaIvaInput").value;
 
       if (!nome) {
-        mostrarErro("Por favor preenche o teu nome.");
+        mostrarErro("Por favor preencha o seu nome.");
         return;
       }
       if (!taxaIva) {
-        mostrarErro("Por favor seleciona a tua taxa de IVA.");
+        mostrarErro("Por favor seleciona a sua taxa de IVA.");
         return;
       }
 
@@ -852,7 +852,7 @@
         }
 
       } catch(err) {
-        mostrarErro("Erro de ligação. Verifica a tua internet e tenta novamente.");
+        mostrarErro("Erro de ligação. Verifique a sua ligação à internet e tenta novamente.");
       } finally {
         submitBtn.disabled          = false;
         submitText.style.display    = "inline";
